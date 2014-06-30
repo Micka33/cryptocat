@@ -1,5 +1,133 @@
 #Changelog
 
+##Cryptocat 2.2.2
+**June 12 2014**
+
+- Encrypted file transfer is now back in Cryptocat after being temporarily disabled pending review. Note that encrypted file transfer is not available over the Encrypted Facebook Chat feature.  
+- Updated Ukrainian translation.  
+- Small bug fixes.  
+
+##Cryptocat 2.2.1
+**May 13 2014**
+
+- The "Logout" button now makes Cryptocat forget Facebook login information by default.  
+- Fixed a bug that would cause single quotes and apostrophes to render inaccurately in Facebook conversations.  
+- User interface bug fixes and improvements.  
+- Updated Catalan and Slovak translations.  
+
+##Cryptocat 2.2
+**May 10 2014**
+
+Cryptocat 2.2 brings a major new feature: Encrypted Facebook Chat!
+Load your Facebook Chat contacts within Cryptocat. Cryptocat will detect other Facebook friends using Cryptocat and will allow you to immediately set up encrypted chat.
+
+You can still chat with regular Facebook contacts from within Cryptocat, but the conversations won't be encrypted. If a Facebook friend also logs in via Cryptocat, your chat will be immediately upgraded to an encrypted Cryptocat chat. Your encrypted chats cannot be viewed by Facebook or by Cryptocat since they are encrypted via the OTR protocol. 
+
+Both individuals must be using Cryptocat (or an OTR-enabled client) for this feature to work. A blog post will be published upon release clarifying this feature further.
+
+Cryptocat 2.2 also brings:
+- Typing notifications have been redesigned to be less intrusive, after complaints from users.  
+- Cryptocat's buddy list now maintains automatic alphabetic ordering.  
+- Fixed a bug that could render the authentication status inaccurately in rare circumstances.  
+- Updates to many of Cryptocat's translations.  
+- Tons of small fixes and improvements.  
+
+##Cryptocat 2.1.23
+**Apr. 10 2014**
+
+- Since we are currently unable to actively maintain it, Tor integration has been removed from Cryptocat for Mac.  
+- Fixed a bug that could, in limited circumstances, mistakenly show unauthenticated participants as authenticated.  
+- Fixed two non-time-invariant MAC comparisons.  
+- Fixed a bug that could allow an attacker to stall a Cryptocat conversation.
+- Fixed a bug that prevented audio notifications from playing in Firefox on Linux.  
+- Many small improvements and tweaks to the code and user interface.  
+- Many translations have been updated.  
+
+##Cryptocat 2.1.22
+**Apr. 2 2014**
+
+*Note: this release is currently in the process of being rolled out to production. The delay is that so we can launch the update across all platforms simultaneously.*  
+
+- Authentication is completely redone. Now, Cryptocat has a new, better and more useful authentication interface that reminds users to authenticate, shows authentication status, and even includes a slideshow tutorial on what authentication is and why it's important. Learn more about the authentication improvements on our blog: https://blog.crypto.cat/2014/04/recent-audits-and-coming-improvements/  
+- Authenticating via secret questions (SMP) now authenticates both group conversations and private conversations.  
+- Keyboard shortcuts! Press `ctrl+2` to switch to the next buddy, and `ctrl+1` to move back to the previous buddy.  
+- Important user interface change: the active conversation no longer switches to the top of the buddy list. This is done so that keyboard shortcuts can work better.  
+- Fixed a bug that made conversation content "jump" when a user finished sending a message for which there was a "typing" icon.  
+- Many improvements to the user interface.  
+- Many small improvements and tweaks.  
+- Many translations have been updated.  
+
+##Cryptocat 2.1.21
+**Mar. 13 2014**
+
+- Cryptocat for Firefox now only supports Firefox 21 and higher. This allows us to remove some outdated hacks that were necessary to allow older versions of Firefox to support Cryptocat.  
+- Added Ukrainian translation.  
+- Small fixes were made to the Spanish translation.  
+- The authentication interface has been updated to clarify that question-based authentication is for private OTR chats only.  
+- Fixed a bug that would allow clients with malformed nicknames to cause a crash in other Cryptocat clients in a conversation.  
+- Fixed a bug that would allow clients with malformed nicknames to secretly join a Cryptocat conversation and obtain ciphertext. These clients would not be part of the conversation however and would not be able to obtain plaintext.  
+- Fixed a bug that wouldn't allow non-latin characters in question-based authentication.  
+- Fixed a bug in Cryptocat for Firefox that would not add a Cryptocat button to the Firefox toolbar.  
+- Fixed a bug that would not allow the user to scroll up for a few seconds if they receive too many new messages in a short period of time.  
+- Many small improvements were made to the user interface.  
+- Many improvements and optimizations were made to the Cryptocat code.  
+- Updated Cryptocat dependencies to their latest versions.  
+
+
+##Cryptocat 2.1.20
+**Feb. 4 2014**
+
+**This is an important update with fixes for both usability and security.**
+
+- Fixed a bug introduced in Cryptocat 2.1.19 that prevented group conversations with exactly two participants from working properly.  
+- Addressed a security risk that could allow an attacker to divert the destination of outgoing chat messages.  
+- Added join/part notifications to one-on-one conversation windows.  
+
+##Cryptocat 2.1.19
+**Jan. 30 2014**
+
+- Cryptocat now supports anonymous SASL authentication.  
+- Fixed a bug that prevented tooltips for chat settings from displaying properly.  
+- Fixed a bug that would prevent the sending of messages if the user was the only person in a conversation.  
+- Fixed a bug that prevented text from showing in desktop notifications.  
+- Updated OTR.js and jQuery libraries to their latest versions.  
+- Other bug fixes.  
+
+##Cryptocat 2.1.18
+**Jan. 4 2014**
+
+This update contains fixes specific only to the Firefox and Opera versions of Cryptocat. It will not be released for any other platform.  
+
+- Firefox: Fixed a bug that could break compatibility with the latest Tor Browser Bundle.  
+- Opera: Fixed a bug that could prevent audio notifications from playing.  
+
+##Cryptocat 2.1.17
+**Dec. 5 2013**
+
+- **Security fix**: A bug which moderately weakened the keys used for group chat was fixed. The reduction in security is not thought to be enough to allow for the easy brute-forcing of keys. The buggy update (2.1.16) was available for less than six days before this bug was detected, and was never released for Firefox. We thank security researcher Steve Thomas for his incredibly valuable contributions to Cryptocat.  
+- Fixed a sometimes-incorrect alignment of warning messages in the user interface.  
+- The "message received" audio notification sound was redone. The sound was composed by Rich Vreeland.  
+- Usability improvements were made to the Authentication Question (SMP) feature.  
+- Improvements were made to the German translation.  
+
+##Cryptocat 2.1.16
+**Nov. 29 2013**
+
+- Cryptocat is now available for Opera 15 and higher.  
+- Big improvements to group chat messaging reliability.  
+- Added a "Getting Started" guide that appears for first-time Cryptocat users.  
+- New feature: Save custom server configurations to quickly access later.  
+- Cryptocat for Firefox now also remembers settings and preferences.  
+- Key generation speed improved by up to 40%!  
+- Encrypted file sharing is temporarily disabled in order to investigate a potential issue.  
+- Implemented some preparations for compatibility with upcoming Cryptocat for iPhone and Android.  
+- Buddy context menus now have an improved look.  
+- Audio notifications now work in Safari (only versions 7 and higher).  
+- Highly substantial reduction in Cryptocat's file size due to code optimization and audio file encoding improvements.  
+- Add new Kannada translation.  
+- Fix inconsistencies in some translations.  
+- Many other bug fixes, improvements, optimizations and tweaks.  
+
 ##Cryptocat 2.1.15
 **Oct. 13 2013**  
 - Improve connection stability.  

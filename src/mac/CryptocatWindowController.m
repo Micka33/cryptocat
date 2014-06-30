@@ -8,7 +8,6 @@
 
 #import "CryptocatWindowController.h"
 #import "CryptocatWindowManager.h"
-#import "CryptocatNetworkManager.h"
 #import "fileUtils.h"
 
 @interface WebPreferences (WebPreferencesPrivate)
@@ -35,6 +34,8 @@
 	
 	// Set user agent to Chrome in order to load some Cryptocat features not available to Safari.
 	[_webView setCustomUserAgent:@"Chrome (Mac app)"];
+    [_webView setUIDelegate:self];
+    [_webView setGroupName:@"Cryptocat"];
 	
 	// Initialize localStorage.
 	WebPreferences* prefs = [WebPreferences standardPreferences];
@@ -69,7 +70,11 @@
 	return defaultMenuItemsFixed;
 }
 
-
+// Handle popups.
+- (WebView *)webView:(WebView *)sender createWebViewWithRequest:(NSURLRequest *)request {
+    [[sender mainFrame] loadRequest:request];
+    return sender;
+}
 
 // Handle links.
 - (void)webView:(WebView *)webView decidePolicyForNavigationAction:(NSDictionary *)actionInformation
@@ -91,15 +96,7 @@
     }
 	// Open links in default browser.
 	else if ([[[request URL] absoluteString] hasPrefix:@"http"]) {
-        if ([[CryptocatNetworkManager sharedManager] isTorRunning]) {
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Warning: Opening this link may reveal your identity" defaultButton:@"Yes" alternateButton:@"No" otherButton:nil informativeTextWithFormat:@"Your connection will be no longer anonymized. Do you want to continue?"];
-            NSInteger proceed = [alert runModal];
-            if (proceed) {
-                [[NSWorkspace sharedWorkspace] openURL:[request URL]];
-            }
-        } else{
              [[NSWorkspace sharedWorkspace] openURL:[request URL]];
-        }
     }
 	// Save files.
 	else if ([[[request URL] absoluteString] hasPrefix:@"data:"]) {

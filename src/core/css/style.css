@@ -22,6 +22,7 @@ body {
 	height: 100%;
 	background: #C7E5F5;
 	margin: 0;
+	padding: 0;
 	font-family: 'Helvetica Neue', Helvetica, Arial, Verdana;
 	line-height: 2em;
 }
@@ -47,9 +48,18 @@ img {
 	-moz-user-select: none;
 }
 
+webview {
+	border-radius: 8px 0 8px 8px;
+	width: 450px;
+	height: 350px;
+	overflow: hidden;
+	margin: 10px auto 0 auto;
+	display: block;
+}
+
 [type=text], [type=password], [type=button], [type=submit], textarea {
 	display: block;
-	background: #151520;
+	background: #303040;
 	font-size: 1em;
 	padding: 3px;
 	color: #FFF;
@@ -65,10 +75,11 @@ img {
 	background: #97CEEC;
 	border: none;
 	cursor: pointer;
+	border-radius: 4px 0 4px 4px;
 }
 
 [type=button]:active, [type=submit]:active {
-	box-shadow: 2px 2px #72B1DB;
+	box-shadow: inset 2px 2px #72B1DB;
 }
 
 ::-webkit-input-placeholder {
@@ -85,18 +96,39 @@ MAIN WINDOW (BUBBLE)
 -------------------
 */
 
+div#bubbleWrapper {
+	margin: 0 auto;
+	width: 732px;
+	position: relative;
+}
+
 div#bubble {
 	position: relative;
 	z-index: 1;
 	width: 716px;
-	height: 500px;
-	margin: 1% auto 0 auto;
+	height: 540px;
 	background: #FFF;
 	border-radius: 15px 0 15px 15px;
-	box-shadow: 5px 5px #76BDE5;
-	border: 10px solid #151520;
+	box-shadow: 3px 3px #76BDE5;
+	border: 6px solid #303040;
 	padding: 0 0 50px 0;
 	display: none;
+	float: left;
+}
+
+div#av {
+	background: #303040;
+	width: 0;
+	height: 0;
+	padding: 36px 0;
+	/* display: inline-block; */
+	display: none;
+	float: left;
+	position: relative;
+	z-index: 2;
+	border-radius: 0 0 15px 0;
+	margin-left: -12px;
+	box-shadow: 5px 5px #76BDE5, inset 5px 0 rgba(150, 200, 255, 0.5);
 }
 
 div#bubble div#header {
@@ -111,6 +143,7 @@ div#bubble img.logo {
 	padding: 1px 0 0 0;
 	float: left;
 	height: 34px;
+	border-radius: 5px 0 5px 5px;
 	margin: -5px 5px 0 5px;
 	direction: ltr;
 }
@@ -122,7 +155,7 @@ div#bubble #logoText {
 	color: #97CEEC;
 	font-family: 'Logotype';
 	-webkit-font-smoothing: none;
-	font-size: 32px;
+	font-size: 30px;
 	text-shadow: 2px 2px #45A7DD;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -145,48 +178,110 @@ div#bubble .button {
 	height: 16px;
 }
 
-div#bubble #loginForm {
-	margin: 90px auto 0 auto;
+div#bubble #login {
+	margin: 70px auto 0 auto;
 }
 
-div#bubble #loginForm #conversationName {
-	border-radius: 4px 0 0 0;
-	width: 400px;
-	font-size: 2.8em;
+div#bubble #loginTabs {
+	margin: 0 0 0 132px;
+	font-weight: bold;
+	width: 300px;
+	z-index: 0;
+	position: relative;
 }
 
-div#bubble #loginForm [type=text] {
-	margin: 9px auto;
+div#bubble #loginTabs span {
+	background: #BBB;
+	color: #FFF;
+	padding: 5px 10px;
+	font-size: 1.2em;
+	border-radius: 5px 0 0 0;
+	cursor: default;
+}
+
+div#bubble #loginTabs [data-selected=false]:hover {
+	background: #97CEEC;
+}
+
+div#bubble #loginTabs [data-selected=true] {
+	background: #76BDE5;
+}
+
+div#bubble .loginForm {
+	width: 466px;
+	height: 172px;
+	margin: 0 auto;
+	display: block;
+	z-index: 1;
+	position: relative;
+}
+
+div#bubble #cryptocatLogin {
+}
+
+div#bubble #facebookLogin {
+	display: none;
+	font-size: 1.3em;
+	text-align: center;
+	height: 172px;
+	padding: 0 10px;
+	width: 446px;
+	background: #76BDE5;
+	color: #FFF;
+	border-radius: 5px 0 5px 5px;
+}
+
+div#bubble #facebookLogin #facebookConnect {
+	margin: 20px auto -5px auto;
+	font-size: 1.2em;
+	padding: 10px;
+	width: 300px;
+}
+
+div#bubble #facebookLogin #facebookWarning {
+	font-weight: bold;
+}
+
+div#bubble .loginForm [type=text] {
+	margin: 9px 0;
 	border: none;
 	display: block;
 	padding: 7px;
 	text-align: center;
 	resize: none;
-	background: #97CEEC;
+	background: #76BDE5;
 }
 
-div#bubble #loginForm #nickname {
-	width: 250px;
+div#bubble .loginForm #conversationName {
+	border-radius: 4px 0 0 0;
+	width: 450px;
+	font-size: 2.8em;
+	margin: 0 auto 10px auto;
+	display: block;
+}
+
+div#bubble .loginForm #nickname {
+	width: 300px;
 	font-size: 2em;
-	margin: 0 0 0 151px;
+	margin: 0;
 	display: inline;
 }
 
 div#bubble #loginSubmit {
 	width: 136px;
 	display: inline;
-	height: 39px;
+	height: 41px;
 	margin-left: 10px;
 	position: relative;
 	bottom: 2px;
 	font-size: 1.6em;
-	border: 1px solid #76BDE5;
-	box-shadow: 2px 2px #76BDE5;
-
+	border: 1px solid #97CEEC;
+	box-shadow: 2px 2px #97CEEC;
+	background: #76BDE5;
 }
 
 div#bubble #loginSubmit:hover {
-	background: #76BDE5;
+	background: #97CEEC;
 }
 
 div#bubble #loginSubmit:active {
@@ -196,12 +291,12 @@ div#bubble #loginSubmit:active {
 div#loginInfo {
 	text-align: center;
 	font-size: 1.3em;
-	background: #97CEEC;
+	background: #76BDE5;
 	padding: 3px;
 	color: #FFF;
 	border-radius: 0 0 4px 4px;
-	width: 408px;
-	margin: 9px auto;
+	width: 458px;
+	margin: 9px 0;
 }
 
 div#bubble div#info {
@@ -209,7 +304,7 @@ div#bubble div#info {
 	padding: 4px 10px;
 	box-shadow: 4px 4px #97CEEC;
 	border-radius: 4px 0 4px 4px;
-	margin: 20px auto;
+	margin: 30px auto;
 	width: 650px;
 	height: 210px;
 	font-size: 1.1em;
@@ -241,7 +336,7 @@ div#bubble h1 {
 }
 
 div#bubble #footer {
-	background: #151520;
+	background: #303040;
 	width: 100%;
 	height: 14px;
 	padding: 1px 0 2px 2px;
@@ -314,7 +409,7 @@ div#customServerDialog [type=button] {
 	box-shadow: 2px 2px #97CEEC;
 }
 
-div #customServerDialog #customServerSubmit {
+div#customServerDialog #customServerSubmit {
 	width: 215px;
 }
 
@@ -346,13 +441,13 @@ div#footer #languageSelect {
 }
 
 div#footer #languages {
-	-webkit-column-count: 7;
-	-moz-column-count: 7;
-	column-count: 7;
+	-webkit-column-count: 9;
+	-moz-column-count: 9;
+	column-count: 9;
 	display: none;
-	margin: 30px auto;
 	position: relative;
-	right: 20px;
+	margin: 30px 0 0 0;
+	width: 640px;
 }
 
 div#footer #languages li {
@@ -360,8 +455,9 @@ div#footer #languages li {
 	color: #FFF;
 	background: rgba(255, 255, 255, 0.08);
 	border-radius: 3px;
-	padding: 1px 0 1px 4px;
 	margin: 4px auto;
+	padding: 3px;
+	width: 80px;
 	list-style-type: none;
 }
 
@@ -373,8 +469,8 @@ BUDDY LIST
 
 #buddyWrapper {
 	overflow: hidden;
-	width: 107px;
-	height: 450px;
+	width: 117px;
+	height: 480px;
 	display: none;
 	position: absolute;
 	right: 0;
@@ -383,8 +479,8 @@ BUDDY LIST
 }
 
 #buddyList {
-	height: 449px;
-	width: 140px;
+	height: 479px;
+	width: 150px;
 	overflow-y: scroll;
 	overflow-x: hidden;
 	line-height: 13px;
@@ -392,39 +488,65 @@ BUDDY LIST
 }
 
 .buddy {
-	background: #76BDE5;
-	background: #151520;
+	width: 110px;
+	height: 15px;
+	background: #303040;
 	border-radius: 2px 0 0 2px;
 	margin-top: 2px;
-	background-position: 80% 4px;
+	background-position: 87% 3px;
 	background-repeat: no-repeat;
 	background-size: 16px 16px;
 	color: #FFF;
 	padding: 5px 4px 3px 6px;
 	font-family: 'Monda', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-	font-size: 1.1em;
-	width: 97px;
-	height: 15px;
+	font-size: 1em;
 	display: none;
 	position: relative;
-	text-align: left;
 	cursor: default;
 	z-index: 15;
-	transition: background-color 0.5s;
+	transition: background-color 0.25s;
 }
-.buddy[status=away] {
-	color: #778;
+
+.buddy span.loginTypeIcon {
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+	background-size: 16px 16px;
+	position: absolute;
+	left: 4px;
+	padding: 0;
+	margin: 0;
+	border-radius: 3px 0 3px 3px;
+	bottom: 4px;
+	background-position: top left;
+	background-image: url('../img/icon-48.png');
 }
-.buddy[status=offline] {
-	background-color: #222;
+
+.buddy span.notUsingCryptocat {
+	background-image: url('../img/facebook.png');
+}
+
+.buddy span.shortNickname {
+	margin-left: 18px;
+}
+
+.buddy[status=away] span {
+	color: #aab;
+}
+
+.buddy[status=offline] span {
 	color: #BBB;
-	borderBottom: none;
+	border-bottom: none;
 }
 
 .buddy.currentConversation {
 	background-color: #97CEEC;
+	color: #FFF !important;
 }
 
+.buddy.currentConversation span {
+	color: #FFF !important;
+}
 
 .buddy.ignored span {
 	text-decoration: line-through;
@@ -449,13 +571,13 @@ BUDDY LIST
 }
 
 .buddyMenu:active {
-	background-color: #151520;
+	background-color: #303040;
 }
 
 .buddyMenuContents {
 	display: none;
 	margin: 5px 0 0 -2px;
-	font-size: 0.8em;
+	font-size: 0.9em;
 	width: 100px;
 }
 
@@ -473,7 +595,8 @@ BUDDY LIST
 	background: rgba(255, 255, 255, 0.2);
 }
 
-#buddy-main-Conversation {
+#buddy-groupChat {
+	display: block;
 	background-image: url("../img/groupChat.png");
 	background-position: 97% 3px;
 }
@@ -508,6 +631,11 @@ BUDDY LIST
 	-moz-animation: pulse 2s infinite;
 	-o-animation: pulse 2s infinite;
 	animation: pulse 2s infinite;
+	background-image: url("../img/newMessage.png");
+}
+
+.composing {
+	background-image: url("../img/composing.png");
 }
 
 /*
@@ -522,18 +650,27 @@ DIALOG BOX
 	height: 240px;
 	border: 1px solid #97CEEC;
 	border-radius: 8px 0 8px 8px;
-	margin: 120px auto 0 -235px;
-	left: 50%;
+	margin: 80px auto 0 -240px;
 	z-index: 4;
+	left: 50%;
 	font-size: 1.1em;
 	border-right: none;
 	border-bottom: none;
 	background: #FCFCFC;
 	box-shadow: 5px 5px #97CEEC;
-	top: -20px;
 	display: none;
 	color: #151520;
 	font-family: 'Monda';
+}
+
+.dialogBoxError {
+	border-color: #F00 !important;
+	box-shadow: 5px 5px #F00 !important;
+}
+
+.dialogBoxError #openAuth {
+	padding: 10px;
+	margin: 20px auto 0 auto;
 }
 
 #dialogBox [type=text], #dialogBox [type=password], #dialogBox [type=submit] {
@@ -558,6 +695,10 @@ DIALOG BOX
 	font-weight: bold;
 }
 
+.dialogBoxError #dialogBoxClose {
+	background: #F00 !important;
+}
+
 #dialogBoxContent {
 	padding: 25px 0 0 0;
 }
@@ -575,27 +716,113 @@ DIALOG BOX
 	height: 80px;
 }
 
-#authInfo {
+#displayInfo h2 {
+	color: #000;
+	margin: 0;
+	font-size: 13px;
+	margin-right: 10px;
+}
+
+#authenticated {
+	font-size: 0.9em;
+	cursor: pointer;
+	padding: 1px 30px;
+	height: 20px;
+	border: 1px solid #3992C0;
+	background-color: transparent;
+	box-shadow: 2px 2px #3992C0;
+	color: #3992C0;
+	text-align: center;
+	border-radius: 5px 0 5px 5px;
+	display: inline-block;
+	margin: 3px 25px 0 0;
+	opacity: 0.4;
+}
+
+#authenticated:hover {
+	opacity: 0.8;
+}
+
+#authenticated[data-active=true] {
+	color: #FFF;
+	background-color: #3992C0;
+	opacity: 1;
+}
+
+#notAuthenticated {
+	font-size: 0.9em;
+	cursor: pointer;
+	padding: 1px 30px;
+	height: 20px;
+	border: 1px solid #EF6C74;
+	background-color: transparent;
+	box-shadow: 2px 2px #EF6C74;
+	color: #EF6C74;
+	text-align: center;
+	border-radius: 5px 0 5px 5px;
+	display: inline-block;
+	opacity: 0.4;
+}
+
+#notAuthenticated:hover {
+	opacity: 0.8;
+}
+
+#notAuthenticated[data-active=true] {
+	color: #FFF;
+	background-color: #EF6C74;
+	opacity: 1;
+}
+
+#authLearnMore {
+	width: 230px;
+	font-size: 0.9em;
+	border: 1px dashed #76BDE5;
+	padding: 0 4px;
+	margin: 13px 0 5px 0;
+	display: inline-block;
+	border-radius: 3px 0 3px 3px;
+}
+
+#authLearnMore:hover {
+	cursor: pointer;
+	background: rgba(151, 206, 236, 0.1);
+}
+
+#authLearnMore:active {
+	background: rgba(151, 206, 236, 0.3);
+}
+
+#authTutorial {
+	margin-top: 10px;
+	display: none;
+}
+
+#authTutorial p {
+	max-width: 410px;
+	width: 410px;
+	margin-bottom: 10px;
+	padding: 5px 10px;
+	background: #76BDE5;
+	border-radius: 0 0 5px 5px;
+	color: #FFF;
+}
+
+.authInfo {
 	background: rgba(151, 206, 236, 0.4);
-	width: 90%;
-	height: 208px;
-	padding: 0 5px;
-	margin: -38px auto 0 auto;
+	height: 130px;
+	padding: 5px 8px;
+	margin: 5px auto 0 auto;
 	border-radius: 8px 0 8px 8px;
 }
 
-#authInfo h2 {
+.authInfo h2 {
 	font-size: 16px;
 	padding: 3px;
 	margin: 0 0 5px 0;
 }
 
-#authInfo p {
-	max-width: 500px;
-	margin-top: -10px;
-}
-
-#authInfo #authQuestion, #authInfo #authAnswer {
+.authInfo #authQuestion, .authInfo #authAnswer {
 	box-shadow: none;
 	background: rgba(151, 206, 236, 0.7);
 	padding: 4px;
@@ -605,7 +832,7 @@ DIALOG BOX
 	border-radius: 5px 0 5px 5px;
 }
 
-#authInfo #authSubmit {
+.authInfo #authSubmit {
 	float: right;
 	width: 100px;
 	height: 57px;
@@ -614,11 +841,12 @@ DIALOG BOX
 	font-size: 1.2em;
 	background: #97CEEC;
 	border: none;
+	word-wrap: break-word;
 }
 
 #authVerified {
 	text-align: center;
-	font-size: 1.6em;
+	font-size: 1.1em;
 	color: #FFF;
 	text-shadow: #FFF;
 	display: none;
@@ -695,7 +923,7 @@ DIALOG BOX
 
 .fileProgressBar {
 	height: 14px;
-	width: 80%;
+	width: 72%;
 	display: inline-block;
 	vertical-align: -5px;
 	margin-left: 10px;
@@ -714,9 +942,13 @@ DIALOG BOX
 	border-left: none;
 	background: #97CEEC;
 	max-width: 220px;
-	margin-bottom: 8px;
+	margin-bottom: 2px;
 	color: #FFF;
 	font-size: 1.5em;
+}
+
+#dialogBox .errorTitle {
+	background: #F00 !important;
 }
 
 #dialogBox #fileSelectButton {
@@ -732,7 +964,7 @@ DIALOG BOX
 }
 
 #dialogBox #resetKeysOK {
-	background: #151520;
+	background: #303040;
 	border: 1px solid #97CEEC;
 	color: #97CEEC;
 	margin: 0 auto;
@@ -748,7 +980,7 @@ DIALOG BOX
 }
 
 #otrFingerprint, #multiPartyFingerprint {
-	font-weight: bold;
+	font-weight: 600;
 	font-size: 14px;
 	font-family: monospace;
 }
@@ -781,20 +1013,32 @@ CONVERSATION WINDOW
 
 #conversationInfo .conversationName {
 	color: #FFF;
-	background: #97CEEC;
+	background: #76BDE5;
 	padding: 2px 7px;
 	border-radius: 3px 0 3px 3px;
 	font-size: 1.1em;
+	margin-left: -5px;
 }
 
-#conversationInfo #groupConversation {
-	float: right;
-	margin: -5px 120px 0 0;
-	font-size: 0.8em;
+#conversationInfo #encryptionStatus {
+	margin: 0 0 0 20px;
+	line-height: 1em;
+	font-size: 1.2em;
+	max-width: 400px;
+}
+
+#conversationInfo #encryptionStatus .encrypted {
+	font-weight: bold;
+	color: #3992C0;
+}
+
+#conversationInfo #encryptionStatus .notEncrypted {
+	font-weight: bold;
+	color: #EF6C74;
 }
 
 #conversationWrapper {
-	width: 85%;
+	width: 597px;
 	overflow: hidden;
 	height: 80%;
 	margin-top: -5px;
@@ -808,13 +1052,31 @@ CONVERSATION WINDOW
 #conversationWindow {
 	z-index: 3;
 	height: 100%;
-	width: 104%;
+	width: 622px;
 	font-family: 'Monda', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	color: transparent;
 	position: relative;
 	font-size: 1.15em;
 	overflow-x: hidden;
 	overflow-y: scroll;
+}
+
+#conversationWindow .authStatus {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	margin: 0 7px -4px -2px;
+	border-radius: 4px;
+	background-color: #EF6C74;
+	background-image: url("../img/authStatusNo.png");
+	background-size: 16px 16px;
+	background-position: -2px 2px;
+	cursor: pointer;
+}
+
+#conversationWindow .authStatus[data-auth=true] {
+	background-color: #3992C0;
+	background-image: none;
 }
 
 #conversationWindow .timeStamp {
@@ -830,12 +1092,12 @@ CONVERSATION WINDOW
 	padding: 5px;
 	font-size: 0.95em;
 	margin: 0 10px 0 -4px;
-	min-width: 75px;
+	min-width: 90px;
 	cursor: default;
 	border-radius: 0 0 3px 0;
 	display: inline-block;
-	text-align: center;
 	padding: 2px 4px;
+	text-align: left;
 }
 
 #conversationWindow .nickHighlight {
@@ -843,20 +1105,34 @@ CONVERSATION WINDOW
 }
 
 .missingRecipients {
-	background: #F00;
-	width: 560px;
-	border-radius: 3px 0 0 0;
+	background: #3992C0;
+	border-radius: 4px 0 0 0;
 	margin-bottom: 1px;
 	color: #FFF;
-	padding: 2px 10px;
+	font-size: 0.8em;
+	padding: 0px 10px;
 	opacity: 0;
+	display: inline-block;
+	max-width: 90%;
+}
+
+.notUsingCryptocatWarning {
+	background: #EF6C74;
+	border-radius: 5px 0 5px 5px;
+	margin-bottom: 10px;
+	color: #FFF;
+	font-size: 1em;
+	padding: 10px;
+	opacity: 0;
+	display: inline-block;
+	max-width: 91%
 }
 
 .line1, .line2, .line3, .line4 {
 	box-shadow: 2px 2px #76BDE5;
 	border: 2px solid #76BDE5;
 	border-radius: 3px 0 3px 3px;
-	padding: 0 4px;
+	padding: 0 4px 0 4px;
 	color: #080812;
 	word-wrap: break-word;
 	text-align: left;
@@ -937,11 +1213,11 @@ CONVERSATION WINDOW
 }
 
 #userInputText {
-	background: #0D0D17;
+	background: #202030;
 	border-radius: 7px 0 0 7px;
 	padding: 8px 10px;
 	height: 32px;
-	width: 582px;
+	width: 580px;
 	margin: 10px 0 7px 0;
 	display: inline;
 	box-shadow: none;
@@ -950,7 +1226,6 @@ CONVERSATION WINDOW
 	text-align: left;
 	resize: none;
 	overflow: hidden;
-	border: 1px solid #353535;
 }
 
 #userInputSend {
@@ -1015,12 +1290,6 @@ CONVERSATION WINDOW
 	text-decoration: none;
 }
 
-img.typing {
-	width: 29px;
-	height: auto;
-	vertical-align: -3px;
-}
-
 /*
 -------------------
 EMOTICONS
@@ -1035,19 +1304,20 @@ EMOTICONS
 	margin: 0 3px;
 	background-size: 100% 100%;
 	font-size: 2px;
+	vertical-align: -2px;
 	color: transparent;
 }
 
-.eCat { background-image: url('../img/emoticon/cat.png')}
-.eCry { background-image: url('../img/emoticon/cry.png')}
-.eGasp { background-image: url('../img/emoticon/gasp.png')}
-.eGrin { background-image: url('../img/emoticon/grin.png')}
-.eSad { background-image: url('../img/emoticon/sad.png')}
-.eSmile { background-image: url('../img/emoticon/smile.png')}
-.eSquint { background-image: url('../img/emoticon/squint.png')}
-.eTongue { background-image: url('../img/emoticon/tongue.png')}
-.eUnsure { background-image: url('../img/emoticon/unsure.png')}
-.eWink { background-image: url('../img/emoticon/wink.png')}
-.eWinkTongue { background-image: url('../img/emoticon/winkTongue.png')}
-.eHappy { background-image: url('../img/emoticon/happy.png')}
-.eShut { background-image: url('../img/emoticon/shut.png')}
+.balloon {
+	position: fixed;
+	bottom: -100px;
+	z-index: 100;
+	height: 100px;
+	width: auto;
+}
+
+/*
+-------------------
+AUDIO/VIDEO CHAT
+-------------------
+*/

@@ -1,13 +1,10 @@
 ![Cryptocat](https://raw.github.com/cryptocat/cryptocat/master/src/core/img/icon-128.png)  
+[![Build Status](https://secure.travis-ci.org/cryptocat/cryptocat.png?branch=master)](http://travis-ci.org/cryptocat/cryptocat)  
 
 ###Browser-based app for easy to use, accessible encrypted chat.
-Cryptocat is an experimental browser-based chat client for easy to use, encrypted conversations. It aims to make encrypted, private chat easy to use and accessible. We want to break down the barrier that prevents the general public from having an accessible privacy alternative that they already know how to use. Cryptocat is currently available for Chrome, Firefox and Safari. It uses the [OTR](http://www.cypherpunks.ca/otr/) protocol over XMPP for encrypted two-party chat and the (upcoming) mpOTR protocol for encrypted multi-party chat.
+Cryptocat is an experimental browser-based chat client for easy to use, encrypted conversations. It aims to make encrypted, private chat easy to use and accessible. We want to break down the barrier that prevents the general public from having an accessible privacy alternative that they already know how to use. Cryptocat is currently available for Chrome, Firefox, Safari, Opera, OS X and iPhone. It uses the [OTR](http://www.cypherpunks.ca/otr/) protocol over XMPP for encrypted two-party chat and the (upcoming) mpOTR protocol for encrypted multi-party chat.
 
-## Experimental Status
-[![Build Status](https://secure.travis-ci.org/cryptocat/cryptocat.png?branch=master)](http://travis-ci.org/cryptocat/cryptocat)  
-**Git repository branches are in-development, nightly builds!** They may not work at all. For stable usable builds, check the [releases](https://github.com/cryptocat/cryptocat/releases) section.  
-
-Cryptocat is still under development. Only use it for experimentation! We've had quite a few serious bugs in the past couple of years. [Reports are available on our blog](https://blog.crypto.cat/category/security/). 
+Git repository branches are in-development, nightly builds. For stable usable builds, check the [releases](https://github.com/cryptocat/cryptocat/releases) section.  
 
 ##Platforms
 
@@ -20,7 +17,8 @@ Run `make firefox` to build a Mozilla Firefox-loadable .xpi extension (or just .
 Also available from [Mozilla Firefox Addons](https://addons.mozilla.org/en-US/firefox/addon/cryptocat/).  
 
 ###Opera
-Run `make opera` to build an Opera-compatible .nex extension (or just .zip the directory and change the extension to .nex)
+Run `make opera` to build an Opera-compatible .nex extension (or just .zip the directory and change the extension to .nex)  
+Also available from [Opera Addons](https://addons.opera.com/en/extensions/details/cryptocat/).
 
 ###Apple Safari
 Apple's model makes an automated build process difficult.  
@@ -45,7 +43,7 @@ Please see `SECURITY.md` for guidelines on reporting security issues.
 * [Server Deployment Instructions](https://github.com/cryptocat/cryptocat/wiki/Server-Deployment-Instructions)  
 * [Threat Model](https://github.com/cryptocat/cryptocat/wiki/Threat-Model)  
 * [Design and Functionality Overview](https://github.com/cryptocat/cryptocat/wiki/Design-and-Functionality)  
-* [Architecture and Lifecycle](https://project.crypto.cat/documents/a&l.pdf)  
+* [Architecture and Lifecycle](https://crypto.cat/documents/a&l.pdf)  
 
 ##Discussion & Blog
 * [Issue tracker](https://github.com/cryptocat/cryptocat/issues)  

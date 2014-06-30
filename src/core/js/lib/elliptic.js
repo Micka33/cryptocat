@@ -9,6 +9,7 @@
   }
 
 }(this, function (BigInt) {
+'use strict';
 
 // In order to generate a public value:
 //	priv = BigInt.randBigInt(256)
@@ -85,41 +86,44 @@ function groupDouble(x, z) {
 }
 
 // scalarMult calculates i*base in the elliptic curve.
-Curve25519.scalarMult = function(i, base) {
-	var scalar = BigInt.expand(i, 18)
-	scalar[0] &= (248 | 0x7f00)
-	scalar[17] = 0
-	scalar[16] |= 0x4000
-
+Curve25519.scalarMult = function (scalar, base) {
 	var x1 = BigInt.str2bigInt('1', 10)
 	var z1 = BigInt.str2bigInt('0', 10)
 	var x2 = base
 	var z2 = BigInt.str2bigInt('1', 10)
+	var point
 
-	var j, point
-	for (i = 17; i >= 0; i--) {
-		j = 14
-		if (i === 17) {
-			j = 0
+	// Highest bit is one
+	point = groupAdd(base, x1, z1, x2, z2)
+	x1 = point[0]
+	z1 = point[1]
+	point = groupDouble(x2, z2)
+	x2 = point[0]
+	z2 = point[1]
+
+	for (var i = 253; i >= 3; i--) {
+		if (BigInt.getBit(scalar, i)) {
+			point = groupAdd(base, x1, z1, x2, z2)
+			x1 = point[0]
+			z1 = point[1]
+			point = groupDouble(x2, z2)
+			x2 = point[0]
+			z2 = point[1]
+		} else {
+			point = groupAdd(base, x1, z1, x2, z2)
+			x2 = point[0]
+			z2 = point[1]
+			point = groupDouble(x1, z1)
+			x1 = point[0]
+			z1 = point[1]
 		}
-		for (; j >= 0; j--) {
-			if (scalar[i]&0x4000) {
-				point = groupAdd(base, x1, z1, x2, z2)
-				x1 = point[0]
-				z1 = point[1]
-				point = groupDouble(x2, z2)
-				x2 = point[0]
-				z2 = point[1]
-			} else {
-				point = groupAdd(base, x1, z1, x2, z2)
-				x2 = point[0]
-				z2 = point[1]
-				point = groupDouble(x1, z1)
-				x1 = point[0]
-				z1 = point[1]
-			}
-			scalar[i] <<= 1
-		}
+	}
+
+	// Lowest 3 bits are zero
+	for (i = 2; i >= 0; i--) {
+		point = groupDouble(x1, z1)
+		x1 = point[0]
+		z1 = point[1]
 	}
 
 	var z1inv = BigInt.powMod(z1, p25519Minus2, Curve25519.p25519)

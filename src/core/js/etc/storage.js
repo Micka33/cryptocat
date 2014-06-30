@@ -1,31 +1,26 @@
-if (typeof Cryptocat === 'undefined') {
-	Cryptocat = function() {}
-}
+Cryptocat.storage = {}
 
 $(window).ready(function() {
+'use strict';
 
 // Cryptocat Storage API
 // This API uses different local storage solutions,
 // depending on the browser engine, to offer a uniform
 // storage interface for Cryptocat user preferences and settings.
-// Currently, this provides a functional interface for:
-// Cryptocat for Chrome: YES
-// Cryptocat for Safari: YES
-// Cryptocat for Firefox: YES
 
 // How to use:
-// Cryptocat.Storage.setItem(itemName, itemValue)
+// Cryptocat.storage.setItem(itemName, itemValue)
 // Sets itemName's value to itemValue.
 
-// Cryptocat.Storage.getItem(itemName, callbackFunction(result))
+// Cryptocat.storage.getItem(itemName, callbackFunction(result))
 // Gets itemName's value from local storage, and passes it to
 // the callback function as result.
 
-// Cryptocat.Storage.removeItem(itemName)
+// Cryptocat.storage.removeItem(itemName)
 // Removes itemName and its value from local storage.
 
-// Define the wrapper, depending on our browser or enivronment.
-Cryptocat.Storage = (function() {
+// Define the wrapper, depending on our browser or environment.
+Cryptocat.storage = (function() {
 	// Chrome
 	if (typeof(chrome) === 'object' && chrome.storage) {
 		return {
@@ -67,8 +62,14 @@ Cryptocat.Storage = (function() {
 				element.dispatchEvent(evt)
 				callback(element.getAttribute('firefoxStorageGet'))
 			},
-			removeItem: function() {
-				return false
+			removeItem: function(key) {
+				var element = document.createElement('cryptocatFirefoxElement')
+				document.documentElement.appendChild(element)
+				var evt = document.createEvent('HTMLEvents')
+				element.setAttribute('type', 'remove')
+				element.setAttribute('key', key)
+				evt.initEvent('cryptocatFirefoxStorage', true, false)
+				element.dispatchEvent(evt)
 			}
 		}
 	}
@@ -89,29 +90,29 @@ Cryptocat.Storage = (function() {
 })()
 
 // Initialize language settings.
-Cryptocat.Storage.getItem('language', function(key) {
+Cryptocat.storage.getItem('language', function(key) {
 	if (key) {
-		Cryptocat.Locale.set(key)
+		Cryptocat.locale.set(key, true)
 	}
 	else {
-		Cryptocat.Locale.set(window.navigator.language.toLowerCase())
+		Cryptocat.locale.set(window.navigator.language.toLowerCase())
 	}
 })
 
 // Load custom server settings
-Cryptocat.Storage.getItem('serverName', function(key) {
+Cryptocat.storage.getItem('serverName', function(key) {
 	if (key) { Cryptocat.serverName = key }
 })
-Cryptocat.Storage.getItem('domain', function(key) {
-	if (key) { Cryptocat.domain = key }
+Cryptocat.storage.getItem('domain', function(key) {
+	if (key) { Cryptocat.xmpp.domain = key }
 })
-Cryptocat.Storage.getItem('conferenceServer', function(key) {
-	if (key) { Cryptocat.conferenceServer = key }
+Cryptocat.storage.getItem('conferenceServer', function(key) {
+	if (key) { Cryptocat.xmpp.conferenceServer = key }
 })
-Cryptocat.Storage.getItem('bosh', function(key) {
-	if (key) { Cryptocat.bosh = key }
+Cryptocat.storage.getItem('relay', function(key) {
+	if (key) { Cryptocat.xmpp.relay = key }
 })
-Cryptocat.Storage.getItem('customServers', function(key) {
+Cryptocat.storage.getItem('customServers', function(key) {
 	if (key) {
 		$('#customServerSelector').empty()
 		var servers = $.parseJSON(key)
@@ -121,7 +122,7 @@ Cryptocat.Storage.getItem('customServers', function(key) {
 					name: name,
 					domain: servers[name]['domain'],
 					XMPP: servers[name]['xmpp'],
-					BOSH: servers[name]['bosh']
+					Relay: servers[name]['relay']
 				})
 			)
 		})
@@ -129,7 +130,7 @@ Cryptocat.Storage.getItem('customServers', function(key) {
 })
 
 // Load nickname settings.
-Cryptocat.Storage.getItem('myNickname', function(key) {
+Cryptocat.storage.getItem('myNickname', function(key) {
 	if (key) {
 		$('#nickname').animate({'color': 'transparent'}, function() {
 			$(this).val(key)
@@ -140,26 +141,18 @@ Cryptocat.Storage.getItem('myNickname', function(key) {
 
 // Load notification settings.
 window.setTimeout(function() {
-	Cryptocat.Storage.getItem('desktopNotifications', function(key) {
-		if (key === 'true') { $('#notifications').click() }
+	Cryptocat.storage.getItem('desktopNotifications', function(key) {
+		if (key === 'true') {
+			$('#notifications').click()
+			$('#utip').hide()
+		}
 	})
-	Cryptocat.Storage.getItem('audioNotifications', function(key) {
-		if ((key === 'true') || !key) { $('#audio').click() }
+	Cryptocat.storage.getItem('audioNotifications', function(key) {
+		if ((key === 'true') || !key) {
+			$('#audio').click()
+			$('#utip').hide()
+		}
 	})
 }, 800)
-
-// Load pre-existing encryption keys
-// Key storage currently disabled as we are not yet sure if this is safe to do.
-/*
-Cryptocat.Storage.getItem('myKey', function(key) {
-	if (key) {
-		var myKey = new DSA(JSON.parse(key))
-		Cryptocat.Storage.getItem('multiPartyKey', function(mpKey) {
-			multiParty.setPrivateKey(mpKey)
-			multiParty.getPublicKey()
-		})
-	}
-})
-*/
 
 })

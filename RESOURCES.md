@@ -1,45 +1,49 @@
 #External Resources
 
 ##BigInt
-Origin: http://leemon.com/crypto/BigInt.html  
-License: PD  
+Origin: http://leemon.com/crypto/BigInt.html
+License: PD
 
 ##Crypto-JS
-Origin: http://code.google.com/p/crypto-js/  
-License: BSD-2-Clause  
+Origin: http://code.google.com/p/crypto-js/
+License: BSD-2-Clause
 
 ##EventEmitter
-Origin: https://github.com/Wolfy87/EventEmitter/  
-License: MIT  
+Origin: https://github.com/Wolfy87/EventEmitter/
+License: MIT
 
 ##jQuery
-Origin: http://jquery.org/  
-License: MIT, GPL-2+  
+Origin: http://jquery.org/
+License: MIT, GPL-2+
+
+##jQuery.basic-slider
+Origin: https://github.com/jcobb/basic-jquery-slider/
+License: GPL-3
 
 ##jQuery.color
-Origin: https://github.com/jquery/jquery-color/  
-License: MIT  
+Origin: https://github.com/jquery/jquery-color/
+License: MIT
 
 ##jQuery.utip
 Origin: https://github.com/symeapp/utip
-License: MIT  
+License: MIT
 
 ##Mustache.js
-Origin: https://github.com/janl/mustache.js/  
-License: MIT  
+Origin: https://github.com/janl/mustache.js/
+License: MIT
+
+##Mousetrap
+Origin: https://github.com/ccampbell/mousetrap
+License: Apache 2.0
 
 ##OTR.js
-Origin: https://github.com/arlolra/otr/  
-License: MPL 2.0  
+Origin: https://github.com/arlolra/otr/
+License: MPL 2.0
 
 ##Strophe.js
-Origin: http://strophe.im  
-License: MIT  
+Origin: http://strophe.im
+License: MIT
 
 ##Tinycon
-Origin: https://github.com/tommoor/tinycon  
-License: MIT  
-
-##WeaveCrypto
-Origin: https://github.com/daviddahl/domcrypt  
-License: MPL 1.1, GPL 2.0, LGPL 2.1  
+Origin: https://github.com/tommoor/tinycon
+License: MIT

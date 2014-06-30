@@ -12,6 +12,7 @@ All contributed code, written in JavaScript, must adhere to the following coding
 	6. Please comment your code sufficiently.  
 	7. Anonymous closures should be used wherever they are useful.  
 	8. Brackets are not on new lines.  
+	9. [Strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode) must be enforced at all times.
 
 ##Contributing or improving translations
 Please **do not send pull requests for translations**. Instead, use [Transifex](https://www.transifex.com/projects/p/Cryptocat/resource/cryptocat/). Notify a project manager for Cryptocat on Transifex in case you need assistance.  
@@ -32,18 +33,13 @@ The full license text is included in `LICENSE.txt`.
 * [Development Blog](https://blog.crypto.cat)  
 
 ##Contributors
-* **Jacob Appelbaum**: Testing and feedback.  
-* **Joseph Bonneau**: Testing and feedback.  
-* **Griffin Boyce**: Testing and feedback.  
 * **Arlo Breault**: OTR library maintainer, bug reporter, all-around helper.  
 * **Dmitry Chestnykh**: Salsa20 CSPRNG implementation.  
 * **David Dahl**: window.crypto.getRandomValues() implementation for Firefox.  
 * **Daniel "koolfy" Faucon**: Documentation maintainer, bug reporter.  
-* **Arturo Filastò**: Testing and feedback. 
+* **Andreas "Gordin" Guth**: StropheJS maintainer, WebSocket & anonymous auth implementation.  
 * **Frederic Jacobs**: Substantial contributions to Cryptocat for Mac.  
 * **Nadim Kobeissi**: Lead developer. Created Cryptocat.  
-* **Tom Lowenthal**: Testing and feedback.  
-* **Fabio Pietrosanti**: Testing and feedback.  
 
 ###Multimedia
 * **Ingrid Burrington**: Some icons and graphics.  

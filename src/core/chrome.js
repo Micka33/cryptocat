@@ -1,18 +1,15 @@
 chrome.runtime.onInstalled.addListener(function(details) {
 	if (details.reason === 'install') {
-		chrome.tabs.create({'url': chrome.extension.getURL('firstRun.html')}, function(tab) {})
+		chrome.tabs.create({'url': chrome.extension.getURL('firstRun.html')})
 	}
-	else if (details.reason === 'update') {}
 })
 
-/*
-chrome.app.runtime.onLaunched.addListener(function() {
+/* chrome.app.runtime.onLaunched.addListener(function() {
 	chrome.app.window.create('index.html', {
 		'bounds': {
 			'width': 755,
-			'height': 590,
+			'height': 625,
 		},
 		'resizable': false
 	})
-})
-*/
+}) */
